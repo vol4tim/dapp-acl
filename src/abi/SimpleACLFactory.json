@@ -1,0 +1,23 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "acl",
+        "type": "address"
+      }
+    ],
+    "name": "NewACL",
+    "type": "event"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "create",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
