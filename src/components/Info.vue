@@ -2,7 +2,7 @@
   <div>
     <v-container grid-list-md>
       <v-layout justify-center row wrap>
-        <v-flex sm12 md10 lg6>
+        <v-flex sm12 md10>
           <v-card>
             <v-card-title primary-title>
               <v-container grid-list-md>
@@ -94,15 +94,6 @@ export default {
       this.createSuccess = ''
       this.loadingCreate = true
       const factory = web3.eth.contract(SimpleACLFactoryABI).at(FACTORY)
-      const newAclEvent = factory.NewACL()
-      newAclEvent.watch((error, result) => {
-        if (error) {
-          return
-        }
-        this.loadingCreate = false
-        this.createSuccess = 'New ACL: ' + result.args.acl
-        newAclEvent.stopWatching()
-      })
       factory.create({from: web3.eth.accounts[0], gas: '1000000', gasPrice: GAS_PRICE}, (e, r) => {
         if (e) {
           this.loadingCreate = false
@@ -111,7 +102,16 @@ export default {
         }
         watchTx(r)
           .then(() => {
-            console.log('tx ok')
+            console.log('tx ok', r)
+            web3.eth.getTransactionReceipt(r, (e, res) => {
+              if (e) {
+                this.loadingCreate = false
+                this.createError = 'Error'
+                return
+              }
+              this.loadingCreate = false
+              this.createSuccess = 'New ACL: ' + '0x' + res.logs[0].topics[1].substr(-40)
+            })
           })
           .catch(() => {
             this.createError = 'Error'

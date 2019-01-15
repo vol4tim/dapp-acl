@@ -2,7 +2,7 @@
   <div>
     <v-container grid-list-md>
       <v-layout justify-center row wrap>
-        <v-flex sm12 md10 lg6>
+        <v-flex sm12 md10>
           <v-card>
             <v-card-title primary-title>
               <v-container grid-list-md>

@@ -3,5 +3,5 @@
 // export const GAS_PRICE = 0
 
 export const NETWORK = 355
-export const FACTORY = '0x7e71544fb34921c37668d79e478c5334bbf07d75'
+export const FACTORY = '0xfb886cf0320b45b76d7ba2f01278c2cf734ce548'
 export const GAS_PRICE = 0
