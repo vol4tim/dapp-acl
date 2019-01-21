@@ -110,7 +110,7 @@ export default {
                 return
               }
               this.loadingCreate = false
-              this.createSuccess = 'New ACL: ' + '0x' + res.logs[0].topics[1].substr(-40)
+              this.createSuccess = 'New ACL: ' + web3.toChecksumAddress('0x' + res.logs[0].topics[1].substr(-40))
             })
           })
           .catch(() => {
